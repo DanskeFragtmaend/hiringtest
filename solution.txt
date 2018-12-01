@@ -1,0 +1,16 @@
+### Update method: ###
+if (truck == null) throw new NullReferenceException("truck is null");
+var t = trucks.FirstOrDefault(x => x.LicensePlate == licensePlate);
+if (t == null)
+    throw new ArgumentOutOfRangeException(nameof(licensePlate), $"A truck with the given license plate {licensePlate} wasn't found.");
+t.Owner = truck.Owner;
+t.Weight = truck.Weight;
+
+### Missing from bSaveTruck_Click API call: ###
++"/"+this.selectedTruck.LicensePlate
+
+What about tests?
+
+The button can be clicked multiple times. How can we fix it?
+
+What happens if ITruckRepository.Add is called multiple times with the same license plate? How can we fix it?
