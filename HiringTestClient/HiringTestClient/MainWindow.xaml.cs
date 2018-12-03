@@ -10,7 +10,7 @@ namespace HiringTestClient
 {
     public partial class MainWindow : INotifyPropertyChanged
     {
-        private const string apiUri = "http://localhost:3970/api/truck";
+        private const string apiUri = "http://localhost:43536/api/truck";
         private Truck selectedTruck;
 
         public ObservableCollection<Truck> Trucks { get; set; } = new ObservableCollection<Truck>();
@@ -28,7 +28,7 @@ namespace HiringTestClient
             var client = new HttpClient();
             var res = await client.GetAsync(apiUri);
             if (!res.IsSuccessStatusCode)
-                MessageBox.Show(this, $"Error code: {res.StatusCode} - {res.ReasonPhrase}", "Error gettings data", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(this, res.ReasonPhrase, "Error gettings data", MessageBoxButton.OK, MessageBoxImage.Error);
             var trucks = await res.Content.ReadAsAsync<IEnumerable<Truck>>();
             foreach (var truck in trucks)
                 Trucks.Add(truck);
@@ -38,7 +38,7 @@ namespace HiringTestClient
             var client = new HttpClient();
             var res = await client.PutAsJsonAsync(apiUri, this.selectedTruck);
             if (!res.IsSuccessStatusCode)
-                MessageBox.Show(this, $"Error code: {res.StatusCode} - {res.ReasonPhrase}", "Error saving data", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(this, $"Call to the backend failed, maybe the endpoint wasn't found. Error: {res.ReasonPhrase}", "Error saving data", MessageBoxButton.OK, MessageBoxImage.Error);
             SelectedTruck = null;
         }
 

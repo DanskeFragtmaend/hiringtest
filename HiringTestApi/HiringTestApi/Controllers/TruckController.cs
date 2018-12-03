@@ -15,7 +15,7 @@ namespace HiringTestApi.Controllers
             this.truckRepository = truckRepository;
         }
 
-        // GET api/values
+        // GET api/truck
         [HttpGet]
         public IEnumerable<Truck> Get()
         {
@@ -23,7 +23,7 @@ namespace HiringTestApi.Controllers
             return this.truckRepository.GetAll();
         }
 
-        // GET api/values/HN85258
+        // GET api/truck/HN85258
         [HttpGet("{id}")]
         public ActionResult Get(string id)
         {
@@ -32,7 +32,7 @@ namespace HiringTestApi.Controllers
             return Ok(truck);
         }
 
-        // PUT api/values/as65498
+        // PUT api/truck/as65498
         [HttpPut("{id}")]
         public void Put(string id, [FromBody]Truck value)
         {
