@@ -8,6 +8,7 @@ t.Weight = truck.Weight;
 
 ### Missing from bSaveTruck_Click API call: ###
 +"/"+this.selectedTruck.LicensePlate
+$"{apiUri}/{this.selectedTruck.LicensePlate}"
 
 What about tests?
 
